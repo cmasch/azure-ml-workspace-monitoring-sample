@@ -1,0 +1,718 @@
+{
+  "lenses": {
+    "0": {
+      "order": 0,
+      "parts": {
+        
+        
+        
+        "0": {
+          "position": {
+            "x": 0,
+            "y": 0,
+            "colSpan": 14,
+            "rowSpan": 2
+          },
+          "metadata": {
+            "inputs": [],
+            "type": "Extension/HubsExtension/PartType/MarkdownPart",
+            "settings": {
+              "content": {
+                "settings": {
+                  "content": "# Azure Machine Learning Dashboard\nThis is a simple dashboard for monitoring several AML workspaces. Feel free to reach out to me through an issue on [https://github.com/cmasch](https://github.com/cmasch)",
+                  "title": "",
+                  "subtitle": "",
+                  "markdownSource": 1,
+                  "markdownUri": null
+                }
+              }
+            }
+          }
+        },
+        
+        
+        
+        "1": {
+          "position": {
+            "x": 0,
+            "y": 2,
+            "colSpan": 7,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": [
+                    "${log_analytics_ws_id}"
+                  ]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "2622c3d7-46b6-4d45-80ba-33d17139416a",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "TimeGenerated",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "avg_percentage",
+                      "type": "real"
+                    }
+                  ],
+                  "splitBy": [
+                    {
+                      "name": "aml_ws",
+                      "type": "string"
+                    }
+                  ],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "Query": "AppAvailabilityResults\n| extend aml_ws = split(_ResourceId, \"/\", 8)[0]\n| extend percentage = toint(Success) * 100\n| summarize avg(percentage) by bin(TimeGenerated, 1d), tostring(aml_ws)\n| render columnchart with(xtitle=\"day\", ytitle=\"avg availability per day\", kind = unstacked)",
+                "SpecificChart": "UnstackedColumn",
+                "PartTitle": "Aggregated availability per workspace",
+                "PartSubTitle": " "
+              }
+            }
+          }
+        },
+        
+        
+        
+        "2": {
+          "position": {
+            "x": 7,
+            "y": 2,
+            "colSpan": 7,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": [
+                    "${log_analytics_ws_id}"
+                  ]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "2622c3d7-46b6-4d45-80ba-33d17139416a",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "TimeGenerated",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "avg_percentage",
+                      "type": "real"
+                    }
+                  ],
+                  "splitBy": [
+                    {
+                      "name": "Name",
+                      "type": "string"
+                    }
+                  ],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "Query": "AppAvailabilityResults\n| extend percentage = toint(Success) * 100\n| summarize avg(percentage) by bin(TimeGenerated, 1d), Name\n| render columnchart with(xtitle=\"day\", ytitle=\"avg availability per day\", kind = unstacked)\n",
+                "SpecificChart": "UnstackedColumn",
+                "PartTitle": "Availability per endpoint",
+                "PartSubTitle": " "
+              }
+            }
+          }
+        },
+        
+        
+        
+        "3": {
+          "position": {
+            "x": 0,
+            "y": 6,
+            "colSpan": 7,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": [
+                    "${log_analytics_ws_id}"
+                  ]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "3371da55-dddb-4eec-8351-41b234269c0e",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "value": "Pie",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "ProblemId",
+                    "type": "string"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "Count",
+                      "type": "long"
+                    }
+                  ],
+                  "splitBy": [],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "Query": "AppExceptions\n| where ClientType != \"Browser\"\n| summarize Count =sum(ItemCount) by ProblemId\n| union (AppAvailabilityResults\n| where Success == 'false'\n| extend ProblemId = Message\n| summarize Count =count() by ProblemId)\n| where Count > 0\n| order by Count desc\n| render columnchart with(legend = hidden)\n",
+                "PartTitle": "Overall exceptions",
+                "PartSubTitle": " ",
+                "LegendOptions": {
+                  "isEnabled": false,
+                  "position": "Bottom"
+                }
+              }
+            }
+          }
+        },
+        
+        
+        
+        "4": {
+          "position": {
+            "x": 7,
+            "y": 6,
+            "colSpan": 7,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": [
+                    "${log_analytics_ws_id}"
+                  ]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "40b8707d-0d5b-404a-8115-9cf7b2810bf8",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "AnalyticsGrid",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "Query": "AmlComputeJobEvent\n| summarize start=min(TimeGenerated), end=max(TimeGenerated) by ExperimentName, WorkspaceName, ClusterName, ExperimentId\n| project CreatedOn=start, Duration=(end-start), ExperimentName, WorkspaceName\n| order by CreatedOn",
+                "PartTitle": "Experiments",
+                "PartSubTitle": " "
+              }
+            }
+          }
+        },
+        
+
+        
+        "5": {
+          "position": {
+            "x": 0,
+            "y": 10,
+            "colSpan": 14,
+            "rowSpan": 2
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": [
+                    "${log_analytics_ws_id}"
+                  ]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "40b8707d-0d5b-404a-8115-9cf7b2810bf8",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "AnalyticsGrid",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "Query": "AmlDataSetEvent\n| where split(OperationName, \"/\")[-1]==\"WRITE\" and AmlDatasetId !=\"\" and AmlDatasetName !=\"\"\n| extend  Identity=(parse_json(Identity)).UserName\n| extend aml_ws = split(_ResourceId, \"/\", 8)[0]\n| summarize created=min(TimeGenerated), modified=max(TimeGenerated) by AmlDatasetName, AmlDatasetId, tostring(Identity), tostring(aml_ws)\n| project CreatedOn=created, ModifiedOn=modified, AmlDatasetId, CreatedBy=Identity, aml_ws, AmlDatasetName",
+                "PartTitle": "Registered datasets",
+                "PartSubTitle": " "
+              }
+            }
+          }
+        },
+        
+        
+        
+        "6": {
+          "position": {
+            "x": 0,
+            "y": 12,
+            "colSpan": 14,
+            "rowSpan": 3
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": [
+                    "${log_analytics_ws_id}"
+                  ]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "40b8707d-0d5b-404a-8115-9cf7b2810bf8",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "AnalyticsGrid",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "Query": "AmlComputeClusterEvent\n| where ClusterType != 'DSI' and TargetNodeCount > 0\n| summarize RunningNodes=max(TargetNodeCount) by Workspace=tostring(split(_ResourceId, \"/\")[8]), ClusterName, VmSize, VmPriority, Version, Sku\n| sort by RunningNodes\n| limit 10\n\n",
+                "PartTitle": "Top clusters with the largest number of nodes",
+                "PartSubTitle": " "
+              }
+            }
+          }
+        }
+        
+        
+        
+      }
+    }
+  },
+  "metadata": {
+    "model": {
+      "timeRange": {
+        "value": {
+          "relative": {
+            "duration": 24,
+            "timeUnit": 1
+          }
+        },
+        "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+      },
+      "filterLocale": {
+        "value": "en-us"
+      },
+      "filters": {
+        "value": {
+          "MsPortalFx_TimeRange": {
+            "model": {
+              "format": "utc",
+              "granularity": "auto",
+              "relative": "30d"
+            },
+            "displayCache": {
+              "name"  : "UTC Time",
+              "value" : "Past 30 days"
+            }
+          }
+        }
+      }
+    }
+  }
+}
